@@ -1,0 +1,179 @@
+:root {
+  --bg-color: #131313;
+  --surface-color: #131313;
+  --surface-container: #1F2020;
+  --surface-container-high: #2A2A2A;
+  --surface-container-highest: #353535;
+  --on-surface: #E4E2E1;
+  --accent-petroleum: #004D66;
+  --accent-amber: #FFBF00;
+  --outline: #8A9297;
+  --outline-variant: #40484C;
+  --font-family: 'Space Grotesk', sans-serif;
+  --font-family-mono: 'IBM Plex Mono', 'Space Grotesk', monospace;
+  --font-size-body: 1rem;
+  --font-size-headline: 2rem;
+  --border-width: 4px;
+  --cursor-size: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none !important; /* Hide default cursor */
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    linear-gradient(var(--outline-variant) 1px, transparent 1px),
+    linear-gradient(90deg, var(--outline-variant) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  color: var(--on-surface);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Base Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.brutalist-border {
+  border: var(--border-width) solid var(--on-surface);
+}
+
+.hard-shadow {
+  box-shadow: 8px 8px 0px 0px var(--accent-petroleum);
+}
+
+.hard-shadow-amber {
+  box-shadow: 4px 4px 0px 0px var(--accent-amber);
+}
+
+/* Button Component */
+.btn-primary {
+  background-color: var(--accent-petroleum);
+  color: var(--on-surface);
+  border: var(--border-width) solid var(--on-surface);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.1s;
+  box-shadow: 4px 4px 0px 0px var(--on-surface);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px var(--on-surface);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.sticker-stack {
+  position: relative;
+}
+
+.sticker {
+  background-color: var(--surface-container);
+  border: var(--border-width) solid var(--on-surface);
+  padding: 1.5rem;
+  position: absolute;
+}
+
+/* CLI Component Styles */
+.terminal-block {
+  background-color: #0E0E0E;
+  border: var(--border-width) solid var(--on-surface);
+  font-family: 'Space Grotesk', monospace;
+}
+
+.terminal-header {
+  background-color: var(--surface-container-highest);
+  border-bottom: var(--border-width) solid var(--on-surface);
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  gap: 0.5rem;
+}
+
+.terminal-control {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--on-surface);
+}
+
+.terminal-content {
+  padding: 1.5rem;
+  color: var(--accent-amber);
+}
+
+/* Custom Cursor */
+#custom-cursor {
+  position: fixed;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background-color: var(--on-surface);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+  border: 1px solid var(--bg-color);
+}
+
+#custom-cursor.hovering {
+  transform: scale(2);
+  background-color: var(--accent-amber);
+}
+
+/* Animations */
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes terminalTyping {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.reveal-grid {
+  display: grid;
+  mask-image: linear-gradient(to right, black 50%, transparent 50%);
+  mask-size: 200% 100%;
+  animation: reveal 1s forwards;
+}
+
+@keyframes reveal {
+  to { mask-position: -100% 0; }
+}
+
+/* Utility for hover scale */
+.interactive {
+  transition: transform 0.2s;
+}
+
+.interactive:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px var(--accent-amber) !important;
+}
